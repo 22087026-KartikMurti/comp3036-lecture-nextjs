@@ -15,8 +15,8 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
-    "@repo/ui": "workspace:*",
     "@repo/db": "workspace:*",
+    "@repo/ui": "workspace:*",
     "@repo/utils": "workspace:*",
     "@tailwindcss/postcss": "^4.0.0",
     "marked": "^15.0.6",
@@ -38,7 +38,7 @@
     "cross-env": "^7.0.3",
     "playwright": "^1.50.0",
     "typescript": "5.7.3",
-    "vitest": "^3.0.4",
+    "vitest": "^3.0.7",
     "vitest-browser-react": "^0.0.4"
   }
 }

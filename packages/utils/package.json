@@ -27,7 +27,6 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "vitest": "^3.0.4"
-  },
-  "dependencies": {}
+    "vitest": "^3.0.7"
+  }
 }

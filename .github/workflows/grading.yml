@@ -35,7 +35,7 @@ jobs:
       - name: Install PNPM 📦
         uses: pnpm/action-setup@v4
         with:
-          version: 10.2.0
+          version: 10.4.1
       - uses: actions/setup-node@v4
         with:
           node-version: 20
@@ -142,6 +142,58 @@ jobs:
           timeout: 10
           max-score: 1
 
+      - name: Exercise - SQL vs NoSQL
+        id: npm5
+        uses: WesternSydneyUniversity/autograding-command-grader@v3
+        continue-on-error: true
+        with:
+          working-directory: tests/playwright
+          test-name: SQL vs NoSQL Tests
+          courseId: ${{env.COURSE}}
+          sectionId: exercise-databases-in-databases
+          command: pnpm playwright test -- --grep "@databases"
+          timeout: 10
+          max-score: 1
+
+      - name: Exercise - Prisma
+        id: npm6
+        uses: WesternSydneyUniversity/autograding-command-grader@v3
+        continue-on-error: true
+        with:
+          working-directory: tests/playwright
+          test-name: Prisma and ORM Tests
+          courseId: ${{env.COURSE}}
+          sectionId: exercise-prisma-and-orm-in-databases
+          command: pnpm playwright test -- --grep "@prisma"
+          timeout: 10
+          max-score: 1
+
+      - name: Exercise - Search and Pagination
+        id: npm7
+        uses: WesternSydneyUniversity/autograding-command-grader@v3
+        continue-on-error: true
+        with:
+          working-directory: tests/playwright
+          test-name: Search and Pagination Tests
+          courseId: ${{env.COURSE}}
+          sectionId: exercise-search-and-pagination-in-databases
+          command: pnpm playwright test -- --grep "@pagination"
+          timeout: 10
+          max-score: 1
+
+      - name: Exercise - Mutations
+        id: npm8
+        uses: WesternSydneyUniversity/autograding-command-grader@v3
+        continue-on-error: true
+        with:
+          working-directory: tests/playwright
+          test-name: Mutations Tests
+          courseId: ${{env.COURSE}}
+          sectionId: exercise-mutations-in-databases
+          command: pnpm playwright test -- --grep "@mutations"
+          timeout: 10
+          max-score: 1
+
       - name: Autograding Reporter
         uses: education/autograding-grading-reporter@v1
         env:
@@ -149,8 +201,10 @@ jobs:
           NPM2_RESULTS: "${{steps.npm2.outputs.result}}"
           NPM3_RESULTS: "${{steps.npm3.outputs.result}}"
           NPM4_RESULTS: "${{steps.npm4.outputs.result}}"
+          NPM5_RESULTS: "${{steps.npm5.outputs.result}}"
+          NPM6_RESULTS: "${{steps.npm6.outputs.result}}"
+          NPM7_RESULTS: "${{steps.npm7.outputs.result}}"
+          NPM8_RESULTS: "${{steps.npm8.outputs.result}}"
           TESTUTILS_RESULTS: "${{steps.testUtils.outputs.result}}"
-          # TESTUI_RESULTS: "${{steps.testUi.outputs.result}}"
-          # TESTWEB_RESULTS: "${{steps.testWeb.outputs.result}}"
         with:
-          runners: npm1,npm2,npm3,npm4,testUtils
+          runners: npm1,npm2,npm3,npm4,npm5,npm6,npm7,npm8,testUtils
