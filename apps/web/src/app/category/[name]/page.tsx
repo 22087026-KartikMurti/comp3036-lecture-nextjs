@@ -9,8 +9,6 @@ export default async function Page({ params }: { params: { name: string } }) {
         return toUrlPath(post.category) === name && post.active;
     });
 
-    console.log('Filtered posts for category', name, ':', filteredPosts);
-
     return (
         <>
             <h1>Category: {name} </h1>
